@@ -13,20 +13,26 @@ let outputSpan3 = document.getElementById("output3");
 // Add Event Listener to Calculate Button
 calcBtn.addEventListener("click", dist);
 
-function dist()  {
+function dist(x1, y1, x2, y2) {
     //input
+    let rise = y2 - y1;
+    let run = x2 - x1;
+    return Math.sqrt(rise ** 2 + run ** 2);
+}
+calcBtn.addEventListener("click", perim);
+function perim(){
     let xa = +x1.value;
     let xb = +x2.value;
     let xc = +x3.value;
     let ya = +y1.value;
     let yb = +y2.value;
     let yc = +y3.value;
-    let dista = Math.sqrt((xb - xa) ** 2 + (yb - ya) ** 2);
-    let distb = Math.sqrt((xc - xb) ** 2 + (yc - yb) ** 2);
-    let distc = Math.sqrt((xa - xc) ** 2 + (ya - yc) ** 2);
-    let perimeter = dista + distb +distc;
-    outputSpan.innerHTML = perimeter
-    outputSpan1.innerHTML = dista
-    outputSpan2.innerHTML = distc
-    outputSpan3.innerHTML = distb
+    let dista = dist(xa, ya, xb, yb);
+    let distb = dist(xb, yb, xc, yc);
+    let distc = dist(xc, yc, xa, ya);
+    let perimeter = dista + distb + distc;
+    outputSpan.innerHTML = perimeter;
+    outputSpan1.innerHTML = dista;
+    outputSpan2.innerHTML = distc;
+    outputSpan3.innerHTML = distb;
 }
